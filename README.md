@@ -15,5 +15,5 @@ Simple website for maintaining a grocery list with Django and React
 - ~~set up DRF API~~
 - ~~create frontend (ReactJS)~~
 - ~~connect frontend to API~~
-
+- ~~update favicon (to grocery cart)~~
 
