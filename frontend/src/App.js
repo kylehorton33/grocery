@@ -69,16 +69,11 @@
              this.state.viewPurchased ? "completed-todo" : ""
            }`}
            title={item.category}
+           onClick={() => this.editItem(item)}
          >
            {item.item}
          </span>
          <span>
-           <button
-             onClick={() => this.editItem(item)}
-             className="btn btn-secondary mr-2"
-           >
-             Edit
-           </button>
            <button
              onClick={() => this.handleDelete(item)}
              className="btn btn-danger"
@@ -178,13 +173,14 @@
                <ul className="list-group list-group-flush">
                  {this.renderItems()}
                  
-                 
-                 
-                 
                </ul>
                {this.state.viewCategorized ? 
-                    <div className="mx-auto p-2" onClick={() => this.toggleCategorizedView()}> All Items </div> :
-                    <div className="mx-auto p-2" onClick={() => this.toggleCategorizedView()}> Categorized </div>
+                    <div className="mx-auto p-2" onClick={() => this.toggleCategorizedView()}>
+                      All Items
+                    </div> :
+                    <div className="mx-auto p-2" onClick={() => this.toggleCategorizedView()}>
+                      Categorized
+                    </div>
                  }
              </div>
            </div>
