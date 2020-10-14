@@ -3,30 +3,30 @@
  import React, { Component } from "react";
  import Modal from "./components/Modal";
 
- const todoItems = [
+ const groceryList = [
    {
      id: 1,
-     title: "Go to Market",
-     description: "Buy ingredients to prepare dinner",
-     completed: true
+     item: "onion",
+     category: "Buy ingredients to prepare dinner",
+     purchased: true
    },
    {
      id: 2,
-     title: "Study",
-     description: "Read Algebra and History textbook for upcoming test",
-     completed: false
+     item: "eggs",
+     category: "Read Algebra and History textbook for upcoming test",
+     purchased: false
    },
    {
      id: 3,
-     title: "Sally's books",
-     description: "Go to library to rent sally's books",
-     completed: true
+     item: "butter",
+     category: "Go to library to rent sally's books",
+     purchased: true
    },
    {
      id: 4,
-     title: "Article",
-     description: "Write article on how to use django with react",
-     completed: false
+     item: "artichokes",
+     category: "Write article on how to use django with react",
+     purchased: false
    }
  ];
  class App extends Component {
@@ -34,13 +34,13 @@
      super(props);
      this.state = {
        modal: false,
-       viewCompleted: false,
+       viewPurchased: false,
        activeItem: {
-         title: "",
-         description: "",
-         completed: false
+         item: "",
+         category: "",
+         purchased: false
        },
-       todoList: todoItems
+       groceryList: groceryList
      };
    }
    toggle = () => {
@@ -54,40 +54,40 @@
      alert("delete" + JSON.stringify(item));
    };
    createItem = () => {
-     const item = { title: "", description: "", completed: false };
+     const item = { item: "", category: "", purchased: false };
      this.setState({ activeItem: item, modal: !this.state.modal });
    };
    editItem = item => {
      this.setState({ activeItem: item, modal: !this.state.modal });
    };
-   displayCompleted = status => {
+   displayPurchased = status => {
      if (status) {
-       return this.setState({ viewCompleted: true });
+       return this.setState({ viewPurchased: true });
      }
-     return this.setState({ viewCompleted: false });
+     return this.setState({ viewPurchased: false });
    };
    renderTabList = () => {
      return (
        <div className="my-5 tab-list">
          <span
-           onClick={() => this.displayCompleted(true)}
-           className={this.state.viewCompleted ? "active" : ""}
+           onClick={() => this.displayPurchased(true)}
+           className={this.state.viewPurchased ? "active" : ""}
          >
-           complete
+           Purchased
          </span>
          <span
-           onClick={() => this.displayCompleted(false)}
-           className={this.state.viewCompleted ? "" : "active"}
+           onClick={() => this.displayPurchased(false)}
+           className={this.state.viewPurchased ? "" : "active"}
          >
-           Incomplete
+           To Buy
          </span>
        </div>
      );
    };
    renderItems = () => {
-     const { viewCompleted } = this.state;
-     const newItems = this.state.todoList.filter(
-       item => item.completed === viewCompleted
+     const { viewPurchased } = this.state;
+     const newItems = this.state.groceryList.filter(
+       item => item.purchased === viewPurchased
      );
      return newItems.map(item => (
        <li
@@ -96,11 +96,11 @@
        >
          <span
            className={`todo-title mr-2 ${
-             this.state.viewCompleted ? "completed-todo" : ""
+             this.state.viewPurchased ? "completed-todo" : ""
            }`}
-           title={item.description}
+           title={item.category}
          >
-           {item.title}
+           {item.item}
          </span>
          <span>
            <button
@@ -122,13 +122,13 @@
    render() {
      return (
        <main className="content">
-         <h1 className="text-white text-uppercase text-center my-4">Todo app</h1>
+         <h1 className="text-white text-uppercase text-center my-4">Grocery List</h1>
          <div className="row ">
            <div className="col-md-6 col-sm-10 mx-auto p-0">
              <div className="card p-3">
                <div className="">
                  <button onClick={this.createItem} className="btn btn-primary">
-                   Add task
+                   Add Item
                  </button>
                </div>
                {this.renderTabList()}

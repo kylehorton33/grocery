@@ -32,38 +32,38 @@ export default class CustomModal extends Component {
     const { toggle, onSave } = this.props;
     return (
       <Modal isOpen={true} toggle={toggle}>
-        <ModalHeader toggle={toggle}> Todo Item </ModalHeader>
+        <ModalHeader toggle={toggle}> Add Grocery </ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="title">Title</Label>
+              <Label for="item">Item</Label>
               <Input
                 type="text"
-                name="title"
-                value={this.state.activeItem.title}
+                name="item"
+                value={this.state.activeItem.item}
                 onChange={this.handleChange}
-                placeholder="Enter Todo Title"
+                placeholder="Enter Item"
               />
             </FormGroup>
             <FormGroup>
-              <Label for="description">Description</Label>
+              <Label for="category">Category</Label>
               <Input
                 type="text"
-                name="description"
-                value={this.state.activeItem.description}
+                name="category"
+                value={this.state.activeItem.quantity}
                 onChange={this.handleChange}
-                placeholder="Enter Todo description"
+                placeholder="Enter Category"
               />
             </FormGroup>
             <FormGroup check>
-              <Label for="completed">
+              <Label for="purchased">
                 <Input
                   type="checkbox"
-                  name="completed"
-                  checked={this.state.activeItem.completed}
+                  name="purchased"
+                  checked={this.state.activeItem.purchased}
                   onChange={this.handleChange}
                 />
-                Completed
+                Purchased
               </Label>
             </FormGroup>
           </Form>

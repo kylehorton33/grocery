@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import ListItem
 
 class ListItemAdmin(admin.ModelAdmin):  # add this
-  list_display = ('item', 'quantity', 'unit') # add this
+  list_display = ('item', 'category') # add this
 
 # Register your models here.
 admin.site.register(ListItem, ListItemAdmin) # add this
