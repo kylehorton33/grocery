@@ -1,6 +1,11 @@
 __ frontend/src/index.css  __/
 
   body {
+    color: blue;
+  }
+
+  .content {
+    color: #444;
     margin: 0;
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -11,9 +16,9 @@ __ frontend/src/index.css  __/
     background-color: #282c34;
   }
 
-h1 {
-  color: #282c34;
-}
+  h1 {
+    color: #ddd;
+  }
 
   .todo-title {
     cursor: pointer;

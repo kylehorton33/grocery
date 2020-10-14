@@ -159,7 +159,7 @@
 
    render() {
      return (
-       <main className="content">
+       <main className="content p-5">
          <h1 className="text-uppercase text-center my-4">Gwocewy Wist</h1>
          <div className="row ">
            <div className="col-md-6 col-sm-10 mx-auto p-0">
