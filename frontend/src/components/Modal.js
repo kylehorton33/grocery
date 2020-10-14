@@ -55,7 +55,8 @@ export default class CustomModal extends Component {
                 placeholder="Enter Category"
               />
             </FormGroup>
-            <FormGroup check>
+             {/* if id exists show checkbox for 'purchased' else (new item) don't show */}
+            {this.state.activeItem.id ? (<FormGroup check>
               <Label for="purchased">
                 <Input
                   type="checkbox"
@@ -65,7 +66,8 @@ export default class CustomModal extends Component {
                 />
                 Purchased
               </Label>
-            </FormGroup>
+            </FormGroup>) : null}
+            
           </Form>
         </ModalBody>
         <ModalFooter>
