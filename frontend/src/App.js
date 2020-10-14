@@ -2,33 +2,9 @@
 
  import React, { Component } from "react";
  import Modal from "./components/Modal";
+ import axios from "axios";
 
- const groceryList = [
-   {
-     id: 1,
-     item: "onion",
-     category: "Buy ingredients to prepare dinner",
-     purchased: true
-   },
-   {
-     id: 2,
-     item: "eggs",
-     category: "Read Algebra and History textbook for upcoming test",
-     purchased: false
-   },
-   {
-     id: 3,
-     item: "butter",
-     category: "Go to library to rent sally's books",
-     purchased: true
-   },
-   {
-     id: 4,
-     item: "artichokes",
-     category: "Write article on how to use django with react",
-     purchased: false
-   }
- ];
+
  class App extends Component {
    constructor(props) {
      super(props);
@@ -40,26 +16,19 @@
          category: "",
          purchased: false
        },
-       groceryList: groceryList
+       groceryList: []
      };
    }
-   toggle = () => {
-     this.setState({ modal: !this.state.modal });
+   componentDidMount() {
+    this.refreshList();
+   }
+   refreshList = () => {
+    axios
+      .get("http://localhost:8000/api/listitems/")
+      .then(res => this.setState({ groceryList: res.data }))
+      .catch(err => console.log(err));
    };
-   handleSubmit = item => {
-     this.toggle();
-     alert("save" + JSON.stringify(item));
-   };
-   handleDelete = item => {
-     alert("delete" + JSON.stringify(item));
-   };
-   createItem = () => {
-     const item = { item: "", category: "", purchased: false };
-     this.setState({ activeItem: item, modal: !this.state.modal });
-   };
-   editItem = item => {
-     this.setState({ activeItem: item, modal: !this.state.modal });
-   };
+
    displayPurchased = status => {
      if (status) {
        return this.setState({ viewPurchased: true });
@@ -119,6 +88,76 @@
        </li>
      ));
    };
+   toggle = () => {
+    this.setState({ modal: !this.state.modal });
+   };
+   handleSubmit = item => {
+    this.toggle();
+    console.log("save" + JSON.stringify(item));
+    if (item.id) {
+      axios.put(
+        `http://localhost:8000/api/listitems/${item.id}/`,
+        {
+          id: item.id,
+          item: item.item,
+          category: item.category,
+          purchased: item.purchased
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    }
+    else {
+      axios.post(
+        "http://localhost:8000/api/listitems/",
+        {
+          item: item.item,
+          category: item.category,
+          purchased: item.purchased
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+   
+   };
+   handleDelete = item => {
+    console.log("delete" + JSON.stringify(item));
+    let id = item.id;
+    console.log(`http://localhost:8000/api/listitems/${id}/`)
+    axios.put(
+      `http://localhost:8000/api/listitems/${id}/`,
+      {
+        item: item.item,
+        category: item.category,
+        purchased: true
+      }
+    )
+    .then(function (response) {
+      console.log(response); 
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+   };
+   createItem = () => {
+    const item = { item: "", category: "", purchased: false };
+    this.setState({ activeItem: item, modal: !this.state.modal });
+   };
+   editItem = item => {
+    this.setState({ activeItem: item, modal: !this.state.modal });
+   };
+
    render() {
      return (
        <main className="content">
