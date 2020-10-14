@@ -10,6 +10,11 @@ __ frontend/src/index.css  __/
     -moz-osx-font-smoothing: grayscale;
     background-color: #282c34;
   }
+
+h1 {
+  color: #282c34;
+}
+
   .todo-title {
     cursor: pointer;
   }
