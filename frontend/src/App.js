@@ -11,6 +11,7 @@
      this.state = {
        modal: false,
        viewPurchased: false,
+       viewCategorized: true,
        activeItem: {
          item: "",
          category: "",
@@ -157,6 +158,9 @@
    editItem = item => {
     this.setState({ activeItem: item, modal: !this.state.modal });
    };
+   toggleCategorizedView = () => {
+     this.setState({ viewCategorized: !this.state.viewCategorized });
+   }
 
    render() {
      return (
@@ -166,19 +170,27 @@
            <div className="col-md-6 col-sm-10 mx-auto p-0">
              <div className="card p-3">
                <div className="">
-                 <button onClick={this.createItem} className="btn btn-primary">
+                 <button onClick={this.createItem} className="my-2 btn btn-primary">
                    Add
                  </button>
                </div>
-               {this.renderTabList()}
+               
                <ul className="list-group list-group-flush">
                  {this.renderItems()}
+                 
+                 
+                 
+                 
                </ul>
+               {this.state.viewCategorized ? 
+                    <div className="mx-auto p-2" onClick={() => this.toggleCategorizedView()}> All Items </div> :
+                    <div className="mx-auto p-2" onClick={() => this.toggleCategorizedView()}> Categorized </div>
+                 }
              </div>
            </div>
+           
          </div>
          {this.state.modal ? (
-           console.log(this.state.activeItem),
            <Modal
              activeItem={this.state.activeItem}
              toggle={this.toggle}
