@@ -7,6 +7,7 @@ Simple website for maintaining a grocery list with Django and React
 - sort list by categories
 - add functionality to viewCategorized toggle
 - refactor API calls
+- enter to submit modal
 
 ## :white_check_mark: Completed:
 - ~~create django project~~
