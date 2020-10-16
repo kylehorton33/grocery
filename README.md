@@ -22,3 +22,4 @@ Simple website for maintaining a grocery list with Django and React
 - ~~toggle button for categories/all items~~ (still need to add functionality)
 - ~~tap item to edit (remove edit button)~~
 - ~~change 'Delete' to 'purchased'~~
+- ~~re-add button on purchased view~~

@@ -74,12 +74,22 @@
            {item.item}
          </span>
          <span>
-           <button
-             onClick={() => this.handleDelete(item)}
-             className="btn btn-danger"
-           >
-             Purchased
-           </button>
+           { this.state.viewPurchased ? 
+              <button
+              onClick={() => this.handleItemButton(item)}
+              className="btn btn-success"
+            >
+              Re-Add
+            </button> : 
+            <button
+            onClick={() => this.handleItemButton(item)}
+            className="btn btn-danger"
+          >
+            Purchased
+          </button>
+          
+          }
+           
          </span>
        </li>
      ));
@@ -126,7 +136,7 @@
     }
    
    };
-   handleDelete = item => {
+   handleItemButton = item => {
     console.log("delete" + JSON.stringify(item));
     let id = item.id;
     console.log(`http://localhost:8000/api/listitems/${id}/`)
@@ -135,7 +145,7 @@
       {
         item: item.item,
         category: item.category,
-        purchased: true
+        purchased: !item.purchased
       }
     )
     .then(function (response) {
@@ -168,6 +178,7 @@
                  <button onClick={this.createItem} className="my-2 btn btn-primary">
                    Add
                  </button>
+                 {this.renderTabList()}
                </div>
                
                <ul className="list-group list-group-flush">
