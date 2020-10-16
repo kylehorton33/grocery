@@ -38,7 +38,7 @@
    };
    renderTabList = () => {
      return (
-       <div className="my-5 tab-list">
+       <div className="my-5 tab-list float-right">
          <span
            onClick={() => this.displayPurchased(true)}
            className={this.state.viewPurchased ? "active" : ""}
@@ -175,7 +175,7 @@
            <div className="col-md-6 col-sm-10 mx-auto p-0">
              <div className="card p-3">
                <div className="">
-                 <button onClick={this.createItem} className="my-2 btn btn-primary">
+                 <button onClick={this.createItem} className="my-2 btn btn-success">
                    Add
                  </button>
                  {this.renderTabList()}
